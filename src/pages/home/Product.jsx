@@ -1,23 +1,26 @@
-import { BsCartPlus } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
-const Product = () => {
+const Product = ({ product }) => {
+  const { image, title, price, id } = product;
+
   return (
-    <div className="product ">
-      {/* <img src={image} alt={title} loading="lazy" /> */}
-
-      <div className="product__info">
-        {/* <h3 className="product__title line__clamp__title">{title}</h3> */}
-        {/* <h5 className="line__clamp">{description}</h5> */}
-        <h5>{/* <StarRating rating={rating} /> */}</h5>
-        {/* <strong>${price}</strong> */}
-        <p
-          className="product__add flex-row
-        "
-          //   onClick={addProductToCart}
-        >
-          <button className="bg-blue-500 rounded-lg mt-5 ">
-            <BsCartPlus color="white" />
-          </button>
+    <div className=" 2xl:container 2xl:mx-auto">
+      <hr className=" w-full  my-6" />
+      <div className=" relative ">
+        <div className=" relative group">
+          <Link to={`/product/${id}`}>
+            <img
+              className="w-full bg-white aspect-square object-contain "
+              src={image}
+              alt="Img"
+            />
+          </Link>
+        </div>
+        <p className=" font-normal text-xl leading-5 text-gray-800 md:mt-6 mt-4 line__clamp">
+          {title}
+        </p>
+        <p className=" font-semibold text-xl leading-5 text-gray-800 mt-4">
+          ${price}
         </p>
       </div>
     </div>

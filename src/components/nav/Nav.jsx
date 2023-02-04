@@ -1,17 +1,11 @@
-import { useContext } from "react";
-import {
-  BsFillMoonStarsFill,
-  BsHeart,
-  BsFillCloudSunFill,
-  BsCart,
-} from "react-icons/bs";
+import { BsCart, BsCartFill } from "react-icons/bs";
 import { FiShoppingBag } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../context/ThemeContext";
 import Search from "./Search";
 
 const Nav = () => {
-  const { handleThemeSwitch, theme } = useContext(ThemeContext);
+  const cart = useSelector((store) => store.cart.cart);
 
   return (
     <>
@@ -25,18 +19,23 @@ const Nav = () => {
         <Search />
         <div className="flex justify-center items-center">
           <Link to="/cart">
-            <div className="    rounded-full p-1 w-10 h-10">
-              <BsCart size={30} />
+            {cart.length === 0 ? (
+              ""
+            ) : (
+              <div className="bg-red-400 rounded-full text-white w-7 px-2 m-1">
+                {cart.length}
+              </div>
+            )}
+            <div className="pr-3 text-gray-800 z-10 mt-[-8px]">
+              <BsCartFill size={30} />
             </div>
           </Link>
-          {/* <div className="m-3 rounded-full p-[5px] w-10 h-10">
-            <BsHeart size={30} />
-          </div> */}
-          {/* <Link to="/profile"> */}
-          <div className="w-10 h-10  ring-4 ring-slate-400 p-1 object-fill rounded-full text-gray-100 bg-gray-500 flex  justify-center mx-2">
-            <div className="text-2xl">B</div>
-          </div>
-          {/* </Link> */}
+
+          <Link to="/profile">
+            <div className="w-10 h-10  ring-4 ring-slate-400 p-1 object-fill rounded-full text-gray-100 bg-gray-500 flex  justify-center mx-2">
+              <div className="text-2xl">B</div>
+            </div>
+          </Link>
         </div>
       </div>
     </>

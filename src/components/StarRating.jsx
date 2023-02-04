@@ -1,6 +1,6 @@
 import { BsFillStarFill } from "react-icons/bs";
 
-export const StarRating = ({ rating: { rate, count } }) => {
+export const StarRating = ({ rating: { rate } }) => {
   return (
     <p>
       {Array(Math.round(rate))
@@ -8,7 +8,6 @@ export const StarRating = ({ rating: { rate, count } }) => {
         .map((rate) => (
           <BsFillStarFill className="inline m-1" />
         ))}
-      {/* <span>{count}rating</span> */}
     </p>
   );
 };

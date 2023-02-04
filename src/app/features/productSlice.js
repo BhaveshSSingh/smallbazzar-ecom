@@ -15,16 +15,12 @@ const productSlice = createSlice({
   initialState: {
     productList: [],
     selectedProduct: [],
-    cart: [],
     loading: true,
   },
 
   reducers: {
     clickedProduct: (state, action) => {
       state.selectedProduct = action.payload;
-    },
-    addToCart(state, action) {
-      state.cart.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -38,6 +34,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { clickedProduct, addToCart } = productSlice.actions;
+export const { clickedProduct } = productSlice.actions;
 
 export default productSlice.reducer;

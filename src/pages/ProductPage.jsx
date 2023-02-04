@@ -2,12 +2,12 @@ import { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { addToCart } from "../app/features/productSlice";
+import { addToCart } from "../app/features/cartSlice";
 import { StarRating } from "../components/StarRating";
 import Review from "./Review";
 
 const ProductPage = () => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   const addCount = () => {
     setCount((prev) => prev + 1);
@@ -23,7 +23,17 @@ const ProductPage = () => {
 
   const dispatch = useDispatch();
   const cartBtnHandler = () => {
-    dispatch(addToCart(clickedProduct));
+    dispatch(
+      addToCart({
+        id: clickedProduct.id,
+        image: clickedProduct.image,
+        category: clickedProduct.category,
+        title: clickedProduct.title,
+        price: clickedProduct.price,
+        quantity: count,
+      })
+    );
+    // dispatch(addToCart(clickedProduct));
   };
 
   return (
@@ -47,8 +57,8 @@ const ProductPage = () => {
           </div>
 
           <div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
-            <p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">
-              {clickedProduct?.category}
+            <p className=" focus:outline-none uppercase focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">
+              Category / {clickedProduct?.category}
             </p>
             <h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
               {clickedProduct?.title}
@@ -96,22 +106,21 @@ const ProductPage = () => {
                   </span>
                 </div>
               </div>
-              <hr className=" bg-gray-200 w-full my-2" />
 
               <hr className=" bg-gray-200 w-full mt-4" />
             </div>
-            <Link to="/cart">
-              <button
-                className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
-                onClick={cartBtnHandler}
-              >
-                Add to cart
-              </button>
-            </Link>
+            {/* <Link to="/cart"> */}
+            <button
+              className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
+              onClick={cartBtnHandler}
+            >
+              Add to cart
+            </button>
+            {/* </Link> */}
           </div>
         </div>
         {/* Reviews */}
-        <Review />
+        {/* <Review /> */}
       </div>
     </>
   );

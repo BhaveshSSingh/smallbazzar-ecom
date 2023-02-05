@@ -15,12 +15,16 @@ const productSlice = createSlice({
   initialState: {
     productList: [],
     selectedProduct: [],
+    searchQuery: "",
     loading: true,
   },
 
   reducers: {
     clickedProduct: (state, action) => {
       state.selectedProduct = action.payload;
+    },
+    searchLetter: (state, action) => {
+      state.searchQuery = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -34,6 +38,6 @@ const productSlice = createSlice({
   },
 });
 
-export const { clickedProduct } = productSlice.actions;
+export const { clickedProduct, searchLetter } = productSlice.actions;
 
 export default productSlice.reducer;

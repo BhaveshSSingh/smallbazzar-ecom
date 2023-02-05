@@ -1,15 +1,15 @@
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { searchLetter } from "../../app/features/emailSlice";
+import { useDispatch } from "react-redux";
+import { searchLetter } from "../../app/features/productSlice";
 
 const Search = () => {
   const [query, setQuery] = useState("");
 
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const searchHandler = (e) => {
     e.preventDefault();
-    // dispatch(searchLetter(query));
+    dispatch(searchLetter(query));
   };
 
   return (

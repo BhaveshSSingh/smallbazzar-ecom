@@ -1,4 +1,4 @@
-import { BsCart, BsCartFill } from "react-icons/bs";
+import { BsCartFill } from "react-icons/bs";
 import { FiShoppingBag } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -10,9 +10,12 @@ const Nav = () => {
   return (
     <>
       <div className="z-50 header sticky top-0 bg-white shadow-md dark:shadow-lg flex items-center justify-between px-2 py-1 dark:bg-gray-800 dark:text-gray-100">
-        <span className="w-3/12 underline flex items-center">
-          <Link to="/home">
+        <span className="w-3/12">
+          <Link to="/home" className="flex items-center">
             <FiShoppingBag size={40} className="text-gray-600" />
+            <p className="underline decoration-slate-500 font-extrabold">
+              Small Bazzar
+            </p>
           </Link>
         </span>
 

@@ -9,19 +9,16 @@ const Cart = () => {
 
   const cartItems = useSelector((store) => store.cart.cart);
 
-  console.log(cartItems);
-
   const dispatch = useDispatch();
-
-  const removeItem = () => {
-    dispatch(removeFromCart());
-  };
 
   const TotalPrice = () => {
     let total = 0;
     cartItems.forEach((item) => (total += item.quantity * item.price));
-    return total;
+    return Math.round(total);
   };
+
+  const shipping = 30;
+  const tax = 35;
 
   return (
     <>
@@ -81,19 +78,21 @@ const Cart = () => {
                           Quantity {prod.quantity}
                         </p>
                         <div className="flex items-center justify-between pt-5 pr-6">
-                          <div
+                          <button
                             className="flex items-center"
-                            onClick={removeItem}
+                            onClick={() => dispatch(removeFromCart(prod.id))}
+                            // onClick={() => removeItem(prod.id)}
                           >
                             <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
                               Remove
                             </p>
-                          </div>
+                          </button>
                           <p className="text-base font-black leading-none text-gray-800">
-                            Item Price ${prod.price}
+                            Item Price ${Math.round(prod.price)}
                           </p>
                           <p className="text-base font-black leading-none text-gray-800">
-                            Total Price ${prod.price * prod.quantity}
+                            Total Price $
+                            {Math.round(prod.price * prod.quantity)}
                           </p>
                         </div>
                       </div>
@@ -122,7 +121,7 @@ const Cart = () => {
                         Shipping
                       </p>
                       <p className="text-base leading-none text-gray-800">
-                        $30
+                        ${cartItems.length === 0 ? "0" : shipping}
                       </p>
                     </div>
                     <div className="flex items-center justify-between pt-5">
@@ -130,19 +129,18 @@ const Cart = () => {
                         Tax
                       </p>
                       <p className="text-base leading-none text-gray-800">
-                        $35
+                        ${cartItems.length === 0 ? "0" : tax}
                       </p>
                     </div>
                   </div>
-                  {/* Copuon section */}
-                  <div>hfh</div>
+
                   <div>
                     <div className="flex items-center pb-6 justify-between lg:pt-5 pt-20">
                       <p className="text-2xl leading-normal text-gray-800">
                         Total
                       </p>
                       <p className="text-2xl font-bold leading-normal text-right text-gray-800">
-                        ${TotalPrice() - 65}
+                        ${cartItems.length === 0 ? "0" : TotalPrice() + 65}
                       </p>
                     </div>
                     <button

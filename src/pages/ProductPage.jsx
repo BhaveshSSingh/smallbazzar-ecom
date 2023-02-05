@@ -33,7 +33,6 @@ const ProductPage = () => {
         quantity: count,
       })
     );
-    // dispatch(addToCart(clickedProduct));
   };
 
   return (

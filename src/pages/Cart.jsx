@@ -17,8 +17,8 @@ const Cart = () => {
     return Math.round(total);
   };
 
-  const shipping = 30;
-  const tax = 35;
+  const shipping = 10;
+  const tax = 15;
 
   return (
     <>
@@ -140,7 +140,10 @@ const Cart = () => {
                         Total
                       </p>
                       <p className="text-2xl font-bold leading-normal text-right text-gray-800">
-                        ${cartItems.length === 0 ? "0" : TotalPrice() + 65}
+                        $
+                        {cartItems.length === 0
+                          ? "0"
+                          : TotalPrice() + (shipping + tax)}
                       </p>
                     </div>
                     <button

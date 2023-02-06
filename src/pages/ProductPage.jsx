@@ -63,10 +63,10 @@ const ProductPage = () => {
               {clickedProduct?.title}
             </h2>
 
-            <div className=" flex flex-row justify-between  mt-5">
+            <div className=" flex flex-row items-center   mt-5">
               <StarRating rating={clickedProduct?.rating} />
-              <p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
-                {clickedProduct?.rating?.count} reviews
+              <p className="pl-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
+                ({clickedProduct?.rating?.count} reviews)
               </p>
             </div>
 
@@ -108,14 +108,12 @@ const ProductPage = () => {
 
               <hr className=" bg-gray-200 w-full mt-4" />
             </div>
-            {/* <Link to="/cart"> */}
             <button
               className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
               onClick={cartBtnHandler}
             >
               Add to cart
             </button>
-            {/* </Link> */}
           </div>
         </div>
         {/* Reviews */}

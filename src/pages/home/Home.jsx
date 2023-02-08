@@ -7,6 +7,10 @@ import Product from "./Product";
 const Home = () => {
   const allProducts = useSelector((store) => store.products.productList);
 
+  const filteredProducts = useSelector(
+    (store) => store.products.filteredProducts
+  );
+
   const dispatch = useDispatch();
 
   const clickHandler = (prod) => {
@@ -14,23 +18,35 @@ const Home = () => {
   };
 
   const searchQuery = useSelector((state) => state.products.searchQuery);
+  const selectedCategory = useSelector((state) => state.products.category);
+  const selectedPrice = useSelector((state) => state.products.price);
+  const selectedStars = useSelector((state) => state.products.stars);
 
-  const searchFilteredData = () => {
-    return allProducts.filter((item) =>
-      item.title.toLowerCase().includes(searchQuery)
-    );
+  const FilteredData = () => {
+    const text = searchQuery;
+    const category = selectedCategory;
+    const price = selectedPrice;
+    const star = selectedStars;
+
+    return filteredProducts
+      .filter((item) => item.title.toLowerCase().includes(text))
+      .filter((item) => item.category === category) //all pe click kark sab aana chaiye (show allProducts)
+      .filter((item) => item.price <= price)
+      .filter((item) => Math.round(item.rating.rate) <= star);
   };
 
   return (
-    <div className="flex justify-between ">
-      <Filter />
+    <div className="flex justify-between">
+      <div>
+        <Filter />
+      </div>
 
       <div className="flex flex-wrap ">
         <div className=" grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 lg:gap-y-12 lg:gap-x-8 sm:gap-y-10 sm:gap-x-6 gap-y-6 lg:mt-12 mt-10">
           {allProducts.length === 0 ? (
             <ProductLoading />
           ) : (
-            searchFilteredData().map((prod) => (
+            FilteredData().map((prod) => (
               <div onClick={() => clickHandler(prod)} key={prod.id}>
                 <Product product={prod} key={prod.id} />
               </div>

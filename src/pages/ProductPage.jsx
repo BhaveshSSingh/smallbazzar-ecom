@@ -64,6 +64,7 @@ const ProductPage = () => {
             </h2>
 
             <div className=" flex flex-row items-center   mt-5">
+              {clickedProduct?.rating.rate}
               <StarRating rating={clickedProduct?.rating} />
               <p className="pl-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
                 ({clickedProduct?.rating?.count} reviews)

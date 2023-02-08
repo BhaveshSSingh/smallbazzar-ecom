@@ -1,8 +1,6 @@
 import { BsStarFill, BsStarHalf, BsStar } from "react-icons/bs";
 
 export const StarRating = ({ rating: { rate } }) => {
-  console.log(rate);
-
   const ratingStar = Array.from({ length: 5 }, (el, index) => {
     const halfNum = index + 0.5;
     return (

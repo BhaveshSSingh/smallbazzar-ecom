@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { ImPriceTag } from "react-icons/im";
+import { useDispatch } from "react-redux";
+import { priceRange } from "../../app/features/productSlice";
 
 const SliderFilter = () => {
   const [value, setValue] = useState(1000);
 
+  const dispatch = useDispatch();
+
   const handleSlider = (e) => {
     setValue(e.target.value);
+    dispatch(priceRange(value));
   };
 
   return (
@@ -25,7 +30,6 @@ const SliderFilter = () => {
           onChange={handleSlider}
           min={0}
           max={1000}
-          step={10}
           className="w-full  h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
         />{" "}
       </div>

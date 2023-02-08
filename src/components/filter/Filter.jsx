@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineFilter } from "react-icons/hi";
 import StarFilter from "./StarFilter";
 import SliderFilter from "./SliderFilter";
 import CategoryFilter from "./CategoryFilter";
+import { useSelector } from "react-redux";
 
 const Filter = () => {
-  const [showFilters, setShowfilters] = useState(true);
+  const [showFilters, setShowfilters] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  const applyFilters = (e) => {
-    setCheck({
-      ...check,
-      Electronics: false,
-      Jewelery: false,
-      MensClothing: false,
-      WomensClothing: false,
-    });
+  const prodCategories = useSelector((store) => store.products.productList);
+
+  const allCategories = () => {
+    let newVal = prodCategories.map((cat) => cat.category);
+    newVal = ["all", ...new Set(newVal)];
+    setCategories(newVal);
+    return newVal;
   };
+
+  useEffect(() => {
+    allCategories();
+  }, [prodCategories]);
 
   return (
     <div className="2xl:container 2xl:mx-auto ">
@@ -32,9 +37,8 @@ const Filter = () => {
 
         <button
           onClick={() => setShowfilters(!showFilters)}
-          className="cursor-pointer mt-6 block sm:hidden hover:bg-gray-700  focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-2 w-full bg-gray-800 flex text-base leading-4 font-normal text-white justify-center items-center"
+          className="cursor-pointer mt-6 block sm:hidden hover:bg-gray-700  focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-2 w-full bg-gray-800 flex text-base leading-4 font-normal text-white justify-center items-center p-2"
         >
-          <HiOutlineFilter />
           Filters
         </button>
       </div>
@@ -47,26 +51,13 @@ const Filter = () => {
         }
       >
         <div>
-          <CategoryFilter applyFilters={applyFilters} />
+          <CategoryFilter categories={categories} />
         </div>
-
         <hr className=" bg-gray-200 lg:w-6/12 w-full md:my-10 my-8" />
-
         <div>
           <SliderFilter />
         </div>
-
-        {/* Star */}
         <StarFilter />
-
-        <div className="px-0 pt-1 mt-3 w-full md:w-auto md:mt-0 md:py-1 lg:px-20 md:px-6">
-          <button
-            onClick={applyFilters}
-            className="w-full hover:bg-gray-700 focus:ring focus:ring-offset-2 focus:ring-gray-800 text-base leading-4 font-medium py-4 px-10 text-white bg-gray-800"
-          >
-            Apply Filter
-          </button>
-        </div>
       </div>
     </div>
   );

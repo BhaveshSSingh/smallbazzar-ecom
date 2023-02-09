@@ -18,7 +18,7 @@ const Cart = () => {
   };
 
   const shipping = Math.round(TotalPrice() / 15);
-  const tax = Math.round( TotalPrice() /18 );
+  const tax = Math.round(TotalPrice() / 18);
 
   return (
     <>
@@ -77,7 +77,6 @@ const Cart = () => {
                           <button
                             className="flex items-center"
                             onClick={() => dispatch(removeFromCart(prod.id))}
-
                           >
                             <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">
                               Remove

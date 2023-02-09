@@ -1,18 +1,19 @@
 import { BsCartFill } from "react-icons/bs";
-import { FiShoppingBag } from "react-icons/fi";
+import { HiShoppingBag } from "react-icons/hi2";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Search from "./Search";
 
 const Nav = () => {
   const cart = useSelector((store) => store.cart.cart);
+  const user = useSelector((store) => store.user.user);
 
   return (
     <>
       <div className="z-50 header sticky top-0 bg-white shadow-md dark:shadow-lg flex items-center justify-between px-2 py-1 dark:bg-gray-800 dark:text-gray-100">
         <span className="w-3/12">
           <Link to="/home" className="flex items-center">
-            <FiShoppingBag size={40} className="text-gray-600" />
+            <HiShoppingBag size={40} className="text-gray-600" />
             <p className="underline decoration-slate-500 font-extrabold">
               Small Bazzar
             </p>
@@ -36,7 +37,9 @@ const Nav = () => {
 
           <Link to="/profile">
             <div className="w-10 h-10  ring-4 ring-slate-400 p-1 object-fill rounded-full text-gray-100 bg-gray-500 flex  justify-center mx-2">
-              <div className="text-2xl">B</div>
+              <div className="text-2xl capitalize">
+                {user?.displayName.substring(0, 1)}
+              </div>
             </div>
           </Link>
         </div>

@@ -1,45 +1,23 @@
 import { useState } from "react";
-import StarFilter from "../components/filter/StarFilter";
-import { BsFillStarFill, BsPencil } from "react-icons/bs";
+import { BsPencil } from "react-icons/bs";
 import { MdClose } from "react-icons/md";
-import { StarRating } from "../components/StarRating";
-import Modal from "../components/Modal";
+import Modal from "../../components/Modal";
+import { ReviewStarRating, ReviewStars } from "./ReviewHelper";
 
 const Review = () => {
   const [showModal, setShowModal] = useState(false);
-
-  const [menu, setMenu] = useState(true);
-  const [menu1, setMenu1] = useState(false);
-
-  // Modal stars
+  const [writeReview, setWriteReview] = useState("");
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
-  const starFilter = (ratingValue) => {
-    setRating(ratingValue);
-  };
-  const review = Array.from({ length: 5 }, (ele, index) => {
-    const ratingValue = index + 1;
 
-    return (
-      <label className="m-1">
-        <input
-          type="radio"
-          value={ratingValue}
-          className="hidden"
-          onClick={() => starFilter(ratingValue)}
-        />
-        <BsFillStarFill
-          onMouseEnter={() => setHover(ratingValue)}
-          onMouseLeave={() => setHover(null)}
-          className={`inline cursor-pointer ${
-            ratingValue <= (hover || rating)
-              ? "text-orange-400"
-              : "text-gray-400"
-          } `}
-        />
-      </label>
-    );
-  });
+  // review
+  const HandleReview = () => {
+    console.log(writeReview, rating);
+
+    setWriteReview("");
+    setRating(null);
+    setShowModal(false);
+  };
 
   return (
     <div className="py-12 px-4 md:px-6 2xl:px-0 2xl:container 2xl:mx-auto flex justify-center items-center">
@@ -73,17 +51,25 @@ const Review = () => {
              placeholder-gray-500 w-full"
                   type="text"
                   autoFocus
-                  // value={editComment}
-                  // onChange={(e) => setEditComment(e.target.value)}
+                  value={writeReview}
+                  onChange={(e) => setWriteReview(e.target.value)}
                 />
                 <div className="">
                   <h3 className="text-gray-500">Rate your purchase</h3>
-                  <div>{review}</div>
+                  <div>
+                    <ReviewStars
+                      hover={hover}
+                      setHover={setHover}
+                      rating={rating}
+                      setRating={setRating}
+                    />
+                  </div>
                 </div>
               </div>
               <button
+                onClick={() => HandleReview()}
                 type="button"
-                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+                className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 h-full"
               >
                 Post review
               </button>
@@ -101,7 +87,7 @@ const Review = () => {
             </div>
           </div>
 
-          <div className={"md:block " + (menu ? "block" : "hidden")}>
+          <div className={"block"}>
             <p className="mt-3 text-base leading-normal text-gray-600 w-full md:w-9/12 xl:w-5/6">
               When you want to decorate your home, the idea of choosing a
               decorative theme can seem daunting. Some themes seem to have an
@@ -124,7 +110,7 @@ const Review = () => {
                   14 July 2021 use Moment here
                 </p>
                 <div>
-                  <StarRating rating={3.7} />
+                  <ReviewStarRating rate={rating} />
                 </div>
               </div>
             </div>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addToCart } from "../app/features/cartSlice";
 import { StarRating } from "../components/StarRating";
-import Review from "./Review";
+import Review from "./review/Review";
 
 const ProductPage = () => {
   const [count, setCount] = useState(1);

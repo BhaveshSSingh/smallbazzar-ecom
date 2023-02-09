@@ -28,9 +28,17 @@ const Home = () => {
     const price = selectedPrice;
     const star = selectedStars;
 
+    const categoryFilter = (item) => {
+      if (category !== "all") {
+        return item.category === category;
+      } else {
+        return allProducts;
+      }
+    };
+
     return filteredProducts
       .filter((item) => item.title.toLowerCase().includes(text))
-      .filter((item) => item.category === category) //all pe click kark sab aana chaiye (show allProducts)
+      .filter(categoryFilter)
       .filter((item) => item.price <= price)
       .filter((item) => Math.round(item.rating.rate) <= star);
   };

@@ -23,7 +23,7 @@ const StarFilter = () => {
             Stars
           </p>
         </div>
-        <div class="flex items-center mb-5 cursor-pointer">
+        <div className="flex items-center mb-5 cursor-pointer">
           {Array.from({ length: 5 }, (ele, index) => {
             const ratingValue = index + 1;
 

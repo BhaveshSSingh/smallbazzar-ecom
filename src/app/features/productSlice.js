@@ -15,7 +15,7 @@ const productSlice = createSlice({
     filteredProducts: [],
     selectedProduct: [],
     searchQuery: "",
-    category: "",
+    category: "all",
     price: 1000,
     stars: 5,
     loading: true,

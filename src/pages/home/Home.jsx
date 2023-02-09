@@ -7,7 +7,7 @@ import Product from "./Product";
 const Home = () => {
   const allProducts = useSelector((store) => store.products.productList);
 
-  const filteredProducts = useSelector(
+  let filteredProducts = useSelector(
     (store) => store.products.filteredProducts
   );
 
@@ -18,29 +18,24 @@ const Home = () => {
   };
 
   const searchQuery = useSelector((state) => state.products.searchQuery);
-  const selectedCategory = useSelector((state) => state.products.category);
+  let selectedCategory = useSelector((state) => state.products.category);
   const selectedPrice = useSelector((state) => state.products.price);
   const selectedStars = useSelector((state) => state.products.stars);
 
   const FilteredData = () => {
-    const text = searchQuery;
-    const category = selectedCategory;
-    const price = selectedPrice;
-    const star = selectedStars;
-
     const categoryFilter = (item) => {
-      if (category !== "all") {
-        return item.category === category;
+      if (selectedCategory !== "all") {
+        return item.category === selectedCategory;
       } else {
         return allProducts;
       }
     };
 
     return filteredProducts
-      .filter((item) => item.title.toLowerCase().includes(text))
+      .filter((item) => item.title.toLowerCase().includes(searchQuery))
       .filter(categoryFilter)
-      .filter((item) => item.price <= price)
-      .filter((item) => Math.round(item.rating.rate) <= star);
+      .filter((item) => item.price <= selectedPrice)
+      .filter((item) => Math.round(item.rating.rate) <= selectedStars);
   };
 
   return (

@@ -117,8 +117,8 @@ const ProductPage = () => {
             </button>
           </div>
         </div>
-        {/* Reviews */}
-        {/* <Review /> */}
+
+        <Review />
       </div>
     </>
   );

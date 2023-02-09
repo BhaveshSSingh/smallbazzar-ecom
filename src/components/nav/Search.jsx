@@ -10,7 +10,7 @@ const Search = () => {
   const searchHandler = (e) => {
     e.preventDefault();
     setQuery(e.target.value);
-    dispatch(searchLetter(query));
+    dispatch(searchLetter(e.target.value));
   };
 
   return (

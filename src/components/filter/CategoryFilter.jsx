@@ -9,11 +9,6 @@ const CategoryFilter = ({ categories }) => {
     dispatch(clickedCategory(cat));
   };
 
-  const allHandler = () => {
-    console.log(" all CLicked:");
-    // dispatch();
-  };
-
   return (
     <>
       {" "}
@@ -24,12 +19,6 @@ const CategoryFilter = ({ categories }) => {
         </p>
       </div>
       <div className="flex flex-col  justify-start items-center">
-        <button
-          className="flex w-full bg-red-400  p-2 m-2  capitalize space-x-2 md:items-center items-center justify-start  rounded-lg hover:underline hover:text-slate-900"
-          onClick={allHandler}
-        >
-          All
-        </button>
         {categories.map((cat) => (
           <button
             className="flex w-full  p-2 m-2  capitalize space-x-2 md:items-center items-center justify-start  rounded-lg hover:underline hover:text-slate-900"

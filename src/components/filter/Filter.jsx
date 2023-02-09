@@ -12,10 +12,10 @@ const Filter = () => {
   const prodCategories = useSelector((store) => store.products.productList);
 
   const allCategories = () => {
-    let newVal = prodCategories.map((cat) => cat.category);
-    newVal = ["all", ...new Set(newVal)];
-    setCategories(newVal);
-    return newVal;
+    let catVal = prodCategories.map((cat) => cat.category);
+    catVal = ["all", ...new Set(catVal)];
+    setCategories(catVal);
+    return catVal;
   };
 
   useEffect(() => {

@@ -12,7 +12,7 @@ const StarFilter = () => {
 
   const starFilter = (ratingValue) => {
     setRating(ratingValue);
-    dispatch(starRange(rating));
+    dispatch(starRange(ratingValue));
   };
   return (
     <>

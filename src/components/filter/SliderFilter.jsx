@@ -10,7 +10,7 @@ const SliderFilter = () => {
 
   const handleSlider = (e) => {
     setValue(e.target.value);
-    dispatch(priceRange(value));
+    dispatch(priceRange(e.target.value));
   };
 
   return (

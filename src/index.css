@@ -14,3 +14,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-thumb {
+  border-radius: 0.5rem;
+  background-color: rgb(80, 80, 80);
+}

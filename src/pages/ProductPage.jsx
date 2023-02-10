@@ -118,7 +118,7 @@ const ProductPage = () => {
           </div>
         </div>
 
-        <Review />
+        <Review prodId={clickedProduct.id} />
       </div>
     </>
   );

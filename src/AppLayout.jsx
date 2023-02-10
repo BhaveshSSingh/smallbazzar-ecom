@@ -6,6 +6,8 @@ import { loginReducer } from "./app/features/userSlice";
 import Nav from "./components/nav/Nav";
 import { auth } from "./firebase";
 import Login from "./pages/Login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function AppLayout() {
   const navigate = useNavigate();
@@ -44,6 +46,7 @@ function AppLayout() {
           <Outlet />
         </>
       )}
+      <ToastContainer />
     </>
   );
 }

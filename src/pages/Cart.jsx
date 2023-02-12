@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { removeFromCart } from "../app/features/cartSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {
+  addToOrders,
+  emptyCart,
+  removeFromCart,
+} from "../app/features/cartSlice";
 
 const Cart = () => {
-  const [show, setShow] = useState(false);
+  const user = useSelector((store) => store.user.user);
+  // console.log("user :", user);
 
   const cartItems = useSelector((store) => store.cart.cart);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const TotalPrice = () => {
     let total = 0;
@@ -20,6 +27,56 @@ const Cart = () => {
   const shipping = Math.round(TotalPrice() / 15);
   const tax = Math.round(TotalPrice() / 18);
 
+  // Razorpay
+
+  function loadScript(src) {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  }
+
+  const displayRazorpay = async () => {
+    const res = await loadScript(
+      "https://checkout.razorpay.com/v1/checkout.js"
+    );
+    if (!res) {
+      console.error("Payment SDK failed, check your Internet connection");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_VdGdvprTKB8u1w",
+      amount: (TotalPrice() + shipping + tax) * 100,
+      currency: "INR",
+      name: "Small Bazzar",
+      description: "Thank you for shopping with us",
+      image:
+        "https://e7.pngegg.com/pngimages/15/271/png-clipart-computer-icons-online-shopping-shopping-cart-service-shopping-cart-icon-text-service.png",
+      handler: function (response) {
+        // clear cart items
+        dispatch(addToOrders());
+        toast("Payment Successful");
+        dispatch(emptyCart());
+        navigate("/home");
+      },
+      prefill: {
+        name: `${user.displayName}`,
+        email: `${user.email}`,
+
+        contact: "9999994444",
+      },
+    };
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
   return (
     <>
       <div>
@@ -140,7 +197,7 @@ const Cart = () => {
                       </p>
                     </div>
                     <button
-                      onClick={() => setShow(!show)}
+                      onClick={displayRazorpay}
                       className="text-base leading-none w-full py-5 bg-gray-800 border-gray-800 border focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-white"
                     >
                       Checkout

@@ -38,14 +38,14 @@ function AppLayout() {
   }, []);
   return (
     <>
-      {!user ? (
-        <Login />
-      ) : (
-        <>
-          <Nav />
-          <Outlet />
-        </>
-      )}
+      {/* {!user ? ( */}
+      {/* <Login /> */}
+      {/* ) : ( */}
+      <>
+        <Nav />
+        <Outlet />
+      </>
+      {/* )} */}
       <ToastContainer />
     </>
   );

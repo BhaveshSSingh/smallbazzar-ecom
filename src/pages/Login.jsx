@@ -1,11 +1,14 @@
 import { signInWithPopup } from "firebase/auth";
 import { HiShoppingBag } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { loginReducer } from "../app/features/userSlice";
 import { auth, provider } from "../firebase";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const loginFn = () => {
     signInWithPopup(auth, provider)
@@ -18,7 +21,10 @@ const Login = () => {
             userID: user.uid,
           })
         );
+        navigate("/home");
+        toast("Logged in Successfully");
       })
+
       .catch((error) => {
         alert(error.message);
       });

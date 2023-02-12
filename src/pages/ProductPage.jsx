@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addToCart } from "../app/features/cartSlice";
 import { StarRating } from "../components/StarRating";
 import Review from "./review/Review";
+import Login from "./Login";
+import { auth } from "../firebase";
 
 const ProductPage = () => {
   const [count, setCount] = useState(1);
@@ -18,10 +20,30 @@ const ProductPage = () => {
       setCount((prev) => prev - 1);
     }
   };
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        navigate("/login");
+      }
+      if (user) {
+        dispatch(
+          loginReducer({
+            displayName: user.displayName,
+            email: user.email,
+            photo: user.photoURL,
+            userID: user.uid,
+          })
+        );
+      }
+    });
+  }, []);
 
   const clickedProduct = useSelector((store) => store.products.selectedProduct);
 
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const cartBtnHandler = () => {
     dispatch(
       addToCart({
@@ -109,6 +131,7 @@ const ProductPage = () => {
 
               <hr className=" bg-gray-200 w-full mt-4" />
             </div>
+
             <button
               className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6"
               onClick={cartBtnHandler}

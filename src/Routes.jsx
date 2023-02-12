@@ -3,6 +3,7 @@ import AppLayout from "./AppLayout";
 import Cart from "./pages/Cart";
 import ErrorMsg from "./pages/ErrorMsg";
 import Home from "./pages/home/Home";
+import Login from "./pages/Login";
 import ProductPage from "./pages/ProductPage";
 import ProfilePage from "./pages/ProfilePage";
 
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/profile",
         element: <ProfilePage />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
     ],
   },

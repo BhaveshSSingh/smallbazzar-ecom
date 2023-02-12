@@ -11,7 +11,6 @@ import {
 
 const Cart = () => {
   const user = useSelector((store) => store.user.user);
-  // console.log("user :", user);
 
   const cartItems = useSelector((store) => store.cart.cart);
 
@@ -26,8 +25,6 @@ const Cart = () => {
 
   const shipping = Math.round(TotalPrice() / 15);
   const tax = Math.round(TotalPrice() / 18);
-
-  // Razorpay
 
   function loadScript(src) {
     return new Promise((resolve) => {
@@ -62,10 +59,10 @@ const Cart = () => {
         "https://e7.pngegg.com/pngimages/15/271/png-clipart-computer-icons-online-shopping-shopping-cart-service-shopping-cart-icon-text-service.png",
       handler: function (response) {
         // clear cart items
-        dispatch(addToOrders());
+        dispatch(addToOrders(cartItems));
         toast("Payment Successful");
         dispatch(emptyCart());
-        navigate("/home");
+        navigate("/profile");
       },
       prefill: {
         name: `${user.displayName}`,

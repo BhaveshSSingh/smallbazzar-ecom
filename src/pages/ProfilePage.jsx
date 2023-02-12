@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { auth } from "../firebase";
 import { logoutReducer } from "../app/features/userSlice";
 import Login from "./Login";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const user = useSelector((store) => store.user.user);
@@ -86,6 +87,18 @@ const ProfilePage = () => {
                         </div>
                         <div className="text-gray-500 font-bold text-2xl">
                           Delivering in 5 Days
+                        </div>
+
+                        <div className="w-full px-4">
+                          <Link to="/home">
+                            <button
+                              // onClick={}
+                              type="button"
+                              className="text-white bg-gradient-to-r from-gray-400 via-gray-500 to-gray-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-gray-300 dark:focus:ring-gray-800 shadow-lg shadow-gray-500/50 dark:shadow-lg dark:shadow-gray-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2  "
+                            >
+                              Shop More!
+                            </button>
+                          </Link>
                         </div>
                       </div>
                     ))

@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    baseName: "https://smallbazzar-ecom.vercel.app/home",
+    baseName: "smallbazzar-ecom.vercel.app/home",
     errorElement: <ErrorMsg />,
     children: [
       { path: "/home", element: <Home /> },

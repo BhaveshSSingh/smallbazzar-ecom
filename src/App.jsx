@@ -9,7 +9,7 @@ import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function AppLayout() {
+function App() {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/home");
@@ -51,4 +51,4 @@ function AppLayout() {
   );
 }
 
-export default AppLayout;
+export default App;

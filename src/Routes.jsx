@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import AppLayout from "./AppLayout";
+import App from "./App";
 import Cart from "./pages/Cart";
 import ErrorMsg from "./pages/ErrorMsg";
 import Home from "./pages/home/Home";
@@ -10,7 +10,7 @@ import ProfilePage from "./pages/ProfilePage";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <App />,
     errorElement: <ErrorMsg />,
     children: [
       { path: "/home", element: <Home /> },

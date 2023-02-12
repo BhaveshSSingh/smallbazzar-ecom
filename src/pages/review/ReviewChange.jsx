@@ -14,7 +14,7 @@ const ReviewChange = ({ review, prodId, user }) => {
     await deleteDoc(
       doc(db, `product${prodId}`, "AllReviews", "reviews", review.id)
     );
-    toast("Comment Deleted 🗑️");
+    toast("Review Deleted 🗑️");
   };
 
   const [editReview, setEditReview] = useState(review.data().review);

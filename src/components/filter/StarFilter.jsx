@@ -28,7 +28,7 @@ const StarFilter = () => {
             const ratingValue = index + 1;
 
             return (
-              <label className="m-1">
+              <label className="m-1" key={index}>
                 <input
                   type="radio"
                   value={ratingValue}

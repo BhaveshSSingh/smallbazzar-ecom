@@ -21,6 +21,7 @@ const CategoryFilter = ({ categories }) => {
       <div className="flex flex-col  justify-start items-center">
         {categories.map((cat) => (
           <button
+            key={cat}
             className="flex w-full  p-2 m-2  capitalize space-x-2 md:items-center items-center justify-start  rounded-lg hover:underline hover:text-slate-900"
             value={cat}
             onClick={(e) => categoryHandler(cat)}

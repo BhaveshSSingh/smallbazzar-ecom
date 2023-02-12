@@ -50,7 +50,7 @@ const ProfilePage = () => {
                 </div>
                 <div className="w-full text-center mt-10 dark:text-gray-100">
                   {orders.length === 0 ? (
-                    <div>Nothing in Cart</div>
+                    <div>No Orders Yet</div>
                   ) : (
                     orders.map((prod) => (
                       <div className="md:flex items-center mt-14 py-8 border-t border-gray-200">
@@ -84,12 +84,12 @@ const ProfilePage = () => {
                             </p>
                           </div>
                         </div>
+                        <div className="text-gray-500 font-bold text-2xl">
+                          Delivering in 5 Days
+                        </div>
                       </div>
                     ))
                   )}
-                  <div className="text-gray-500 font-bold text-2xl">
-                    Delivering in 5 Days
-                  </div>
                 </div>
               </div>
               <div className="text-center mt-2 capitalize">

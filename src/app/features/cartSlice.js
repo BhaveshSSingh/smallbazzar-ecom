@@ -19,7 +19,7 @@ const cartSlice = createSlice({
     removeFromCart(state, action) {
       state.cart = state.cart.filter((item) => item.id !== action.payload);
     },
-    addToOrders(state, action) {
+    addToOrders(state) {
       state.orders = state.cart;
     },
     emptyCart(state) {
